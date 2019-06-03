@@ -1,4 +1,4 @@
-const Product = require('../model/product');
+const Product = require("../model/product");
 // anonymous function export with a variable name
 
 exports.getAddProduct = (req, res, next) => {
@@ -18,13 +18,14 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-	const products = Product.fetchAll();
-	res.render("shop", {
-		prods: products,
-		pageTitle: "shop",
-		path: "/",
-		hasProducts: products.length > 0,
-		activeShop : true,
-		productCSS: true
+	const products = Product.fetchAll(products => {
+		res.render("shop", {
+			prods: products,
+			pageTitle: "shop",
+			path: "/",
+			hasProducts: products.length > 0,
+			activeShop: true,
+			productCSS: true
+		});
 	});
 };
