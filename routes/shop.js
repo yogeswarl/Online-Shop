@@ -10,6 +10,8 @@ router.get('/',shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
+router.get('/products/:productId',shopController.getProduct); //dynamic content display feature by express using ':'
+
 router.get('/cart', shopController.getCart);
 
 router.get('/orders', shopController.getOrders);

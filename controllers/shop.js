@@ -10,6 +10,11 @@ exports.getProducts = (req, res, next) => {
 	});
 };
 
+exports.getProduct = (req, res, next) => {
+	const prodId = req.params.productId; //name should match with the name after the colon in the shop.js file = '
+	console.log(prodId);
+	res.redirect('/');
+};
 
 exports.getIndex = (req,res, next ) => {
 	Product.fetchAll(products => {
