@@ -1,19 +1,18 @@
-const path = require("path");
+const path = require('path');
 
-const express = require("express");
+const express = require('express');
 
-const productController = require('../controllers/admin');
+const adminController = require('../controllers/admin');
+
 const router = express.Router();
 
-//created an array to push the request typed in the text field.
 // /admin/add-product => GET
-router.get("/add-product", productController.getAddProduct); //product controller reference
-
+router.get('/add-product', adminController.getAddProduct);
 
 // /admin/products => GET
-router.get("/products",productController.getProducts);
+router.get('/products', adminController.getProducts);
 
 // /admin/add-product => POST
-router.post("/add-product", productController.postAddProduct);
+router.post('/add-product', adminController.postAddProduct);
 
 module.exports = router;

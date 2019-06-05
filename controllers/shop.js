@@ -1,4 +1,4 @@
-const Product = require('../model/product');
+const Product = require('../models/product');
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
@@ -11,7 +11,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const prodId = req.params.productId; //name shall match with the dynamic content in shop.js in routes folder.
+  const prodId = req.params.productId;
   Product.findById(prodId, product => {
     console.log(product);
   });
