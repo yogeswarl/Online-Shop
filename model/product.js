@@ -24,6 +24,7 @@ module.exports = class product {
 		this.price = price;
 	}
 	save() {
+		this.id = Math.random(); //Random number generator for the unique id
         getProductsFromFile(products => {
 			products.push(this);
 			fs.writeFile(p, JSON.stringify(products), (err) => {
