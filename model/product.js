@@ -1,40 +1,48 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const p = path.join(
-    path.dirname(process.mainModule.filename),
-    "data",
-    "products.json"
+  path.dirname(process.mainModule.filename),
+  'data',
+  'products.json'
 );
-const getProductsFromFile = (cb) => {
-	//make sure to call the class directly on the instantiated object using 'this'
-	fs.readFile(p, (err, fileContent) => {
-		if (err) {
-			cb([]);
-		}else {
-        cb(JSON.parse(fileContent));
-        }
-	});
-};
-module.exports = class product {
-	constructor(title, imageUrl, description, price) {
-		this.title = title;
-		this.imageUrl = imageUrL;
-		this.description = description;
-		this.price = price;
-	}
-	save() {
-		this.id = Math.random(); //Random number generator for the unique id
-        getProductsFromFile(products => {
-			products.push(this);
-			fs.writeFile(p, JSON.stringify(products), (err) => {
-				console.log(err);
-			});
-        });
-        fs.readFile(p, (err,fileContent) => {});
-	}
 
-	static fetchAll(cb) {
-        getProductsFromFile(cb); 
+const getProductsFromFile = cb => {
+  fs.readFile(p, (err, fileContent) => {
+    if (err) {
+      cb([]);
+    } else {
+      cb(JSON.parse(fileContent));
     }
+  });
+};
+
+module.exports = class Product {
+  constructor(title, imageUrl, description, price) {
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
+
+  save() {
+    this.id = Math.random().toString();
+    getProductsFromFile(products => {
+      products.push(this);
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
+      });
+    });
+  }
+
+  static fetchAll(cb) {
+    getProductsFromFile(cb);
+  }
+
+  static findById(id, cb) {
+    getProductsFromFile(products => {
+      const product = products.find(p => p.id === id);
+      cb(product);
+    });
+  }
 };
