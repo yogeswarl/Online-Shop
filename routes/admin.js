@@ -17,4 +17,5 @@ router.post('/add-product', adminController.postAddProduct);
 
 router.get('/edit-product/:productId',adminController.getEditProduct); //:productId implements dynamic addition of product id to the controller. use the same name in the controller.
 
+router.post('/edit-product',adminController.postEditProduct); 
 module.exports = router;

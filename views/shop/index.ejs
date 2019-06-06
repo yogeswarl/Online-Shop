@@ -22,7 +22,7 @@
                             <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
-                                <%- include('../includes/add-to-cart.ejs',{ product : product})%>   <!-- note: when include partials is added inside a for loop the value of the elemnent are not passed onto the includes since it is a local variable for that for loop. So we have to pass that as parameters into the includes function-->
+                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
                         </div>
                     </article>
                 <% } %>
