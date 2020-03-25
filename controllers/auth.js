@@ -1,12 +1,14 @@
 exports.getLogin = (req, res, next) => {
-	const isLoggedIn = req.get('Cookie').trim().split('=')[1];
-	res.render("auth/login", {
+	// const isLoggedIn = req.get('Cookie')==='true';
+	console.log(req.session.isLoggedIn)
+ 	res.render("auth/login", {
 		pageTitle: "Login",
 		path: "/login",
-		isAuthenticated: isLoggedIn
+		isAuthenticated: false
 	});
 };
 exports.postLogin = (req, res, next) => {
-	res.setHeader('Set-Cookie','loggedIn=true');
+	req.session.isLoggedIn= true;
+	// res.setHeader('Set-Cookie','loggedIn=true'); //HttpOnly makes the site protected from XSS attacks. 
 	res.redirect('/')
 };
