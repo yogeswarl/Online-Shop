@@ -52,24 +52,9 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
-// mongoConnect((client) => {
-// 	app.listen(3000);
-// });
 mongoose
 	.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then((result) => {
-		User.findOne().then((user) => {
-			if (!user) {
-				const user = new User({
-					name: "Yogesh",
-					email: "yogesh@test.com",
-					cart: {
-						items: []
-					}
-				});
-				user.save();
-			}
-		});
+	.then(() => {
 		app.listen(3000);
 	})
 	.catch((err) => {
