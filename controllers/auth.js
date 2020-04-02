@@ -1,6 +1,16 @@
 const bcrypt = require("bcryptjs");
+require('dotenv').config();
+const nodemailer = require('nodemailer');
+const sendGridTransport= require('nodemailer-sendgrid-transport');
+
 const User = require("../models/user");
 
+
+const transporter = nodemailer.createTransport(sendGridTransport({
+	auth:{
+		api_key:process.env.SENDGRID_API,
+	}
+}))
 exports.getLogin = (req, res, next) => {
 	let message = req.flash('error');
 	if(message.length > 0){
@@ -80,7 +90,13 @@ exports.postSignup = (req, res, next) => {
 				})
 				.then((result) => {
 					res.redirect("/login");
-				});
+					transporter.sendMail({
+						to: email,
+						from:'shop@yogesh.in',
+						subject:'test mail',
+						html:'<h1>My environment works like a charm thanks for being a participant in this</h1>'
+					});
+				}).catch(err => console.log(err));
 		})
 		.catch((err) => {
 			console.log(err);

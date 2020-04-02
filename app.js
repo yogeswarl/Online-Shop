@@ -1,5 +1,5 @@
 const path = require("path");
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -11,12 +11,9 @@ const flash = require('connect-flash');
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 
-const MONGODB_URI =
-	"mongodb+srv://yogeswar:Yogi2198@cluster-test-p9hqd.mongodb.net/shop";
 const app = express();
-
 const store = new mongoDBStore({
-	uri: MONGODB_URI,
+	uri:process.env.DB_SERVER,
 	collection: "sessions"
 });
 const csrfProtect = csrf();
@@ -64,7 +61,7 @@ app.use(authRoutes);
 app.use(errorController.get404);
 
 mongoose
-	.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(process.env.DB_SERVER, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => {
 		app.listen(3000);
 	})
