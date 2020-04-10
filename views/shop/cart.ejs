@@ -19,15 +19,16 @@
                         </li>
                     <% }) %>
                 </ul>
-                <div class="centered" >
-                    <form action = '/create-order' method = "POST">
+                <hr>
+                <div class="centered">
+                    <form action="/create-order" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <button type="submit" class="btn">Order Now!</button>
                     </form>
                 </div>
+                
             <% } else { %>
                 <h1>No Products in Cart!</h1>
             <% } %>
         </main>
-        
         <%- include('../includes/end.ejs') %>
