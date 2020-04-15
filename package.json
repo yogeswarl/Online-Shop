@@ -1,14 +1,14 @@
 {
-  "name": "nodejs-complete-guide",
+  "name": "online-shop",
   "version": "1.0.0",
-  "description": "Complete Node.js Guide",
+  "description": "Online Shop from the Node JS course",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-  "author": "Maximilian Schwarzmüller",
+  "author": "Yogeswar",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.3"
@@ -33,6 +33,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "pdfkit": "^0.11.0",
     "pug": "^2.0.3",
-    "sequelize": "^5.0.0-beta.11"
+    "sequelize": "^5.0.0-beta.11",
+    "stripe": "^8.41.0"
   }
 }
